@@ -4,8 +4,8 @@
 name = "js-sandbox-ios"
 version = "0.2.0"
 description = "Execute JavaScript code from Rust in a secure sandbox, and transport data to/from JS plug-ins."
-repository = "https://github.com/Bromeon/js-sandbox"
-documentation = "https://docs.rs/js-sandbox/0.2.0-rc.1"
+repository = "https://github.com/integration-os/js-sandbox-ios"
+documentation = "https://docs.rs/js-sandbox-ios/latest/js_sandbox_ios"
 authors = ["Jan Haller <bromeon@gmail.com>"]
 license = "Zlib"
 edition = "2021"
