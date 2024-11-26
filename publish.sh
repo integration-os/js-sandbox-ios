@@ -1,2 +1,2 @@
-cargo readme --template cfg/ReadMe.in > ReadMe.md
+cargo readme --template cfg/README.in > README.md
 cargo publish

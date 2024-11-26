@@ -1,9 +1,9 @@
 // Copyright (c) 2020-2023 js-sandbox contributors. Zlib license.
 
-// Note: the crate documentation is copied to ReadMe.md using cargo-readme (see CI)
+// Note: the crate documentation is copied to README.md using cargo-readme (see CI)
 // Alternatives:
-// * once stable: #![feature(external_doc)] #![doc(include = "../ReadMe.md")]
-// * doc_comment crate + doctest!("../ReadMe.md");  -- works for running doc-tests, but not for doc on crate level
+// * once stable: #![feature(external_doc)] #![doc(include = "../README.md")]
+// * doc_comment crate + doctest!("../README.md");  -- works for running doc-tests, but not for doc on crate level
 
 //! `js-sandbox` is a Rust library for executing JavaScript code from Rust in a secure sandbox. It is based on the [Deno] project and uses [serde_json]
 //! for serialization.
@@ -37,13 +37,13 @@
 //! use js_sandbox_ios::{Script, AnyError};
 //!
 //! fn main() -> Result<(), AnyError> {
-//! 	let js_code = "function sub(a, b) { return a - b; }";
-//! 	let mut script = Script::from_string(js_code)?;
+//!     let js_code = "function sub(a, b) { return a - b; }";
+//!     let mut script = Script::from_string(js_code)?;
 //!
-//! 	let result: i32 = script.call("sub", (7, 5))?;
+//!     let result: i32 = script.call("sub", (7, 5))?;
 //!
-//! 	assert_eq!(result, 2);
-//! 	Ok(())
+//!     assert_eq!(result, 2);
+//!     Ok(())
 //! }
 //! ```
 //!
@@ -55,23 +55,23 @@
 //!
 //! #[derive(Serialize)]
 //! struct Person {
-//! 	name: String,
-//! 	age: u8,
+//!     name: String,
+//!     age: u8,
 //! }
 //!
 //! fn main() -> Result<(), AnyError> {
-//! 	let src = r#"
+//!     let src = r#"
 //!         function toString(person) {
 //!             return "A person named " + person.name + " of age " + person.age;
 //!         }"#;
 //!
-//! 	let mut script = Script::from_string(src)?;
+//! 	  let mut script = Script::from_string(src)?;
 //!
-//! 	let person = Person { name: "Roger".to_string(), age: 42 };
-//! 	let result: String = script.call("toString", (person,))?;
+//! 	  let person = Person { name: "Roger".to_string(), age: 42 };
+//! 	  let result: String = script.call("toString", (person,))?;
 //!
-//! 	assert_eq!(result, "A person named Roger of age 42");
-//! 	Ok(())
+//! 	  assert_eq!(result, "A person named Roger of age 42");
+//! 	  Ok(())
 //! }
 //! ```
 //!

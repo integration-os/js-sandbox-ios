@@ -9,7 +9,7 @@ use std::{thread, time::Duration};
 
 use deno_core::anyhow::Context;
 use deno_core::v8::{Global, Value};
-use deno_core::{op2, serde_v8, v8, Extension, FastString, JsBuffer, JsRuntime, Op, OpState};
+use deno_core::{op2, serde_v8, v8, Extension, FastString, JsBuffer, JsRuntime, OpDecl, OpState};
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 
@@ -82,8 +82,9 @@ impl Script {
 	}
 
 	pub fn new() -> Self {
+		const DECL: OpDecl = op_return();
 		let ext = Extension {
-			ops: Cow::Owned(vec![op_return::DECL]),
+			ops: Cow::Owned(vec![DECL]),
 			..Default::default()
 		};
 
@@ -133,7 +134,7 @@ impl Script {
 		// We cannot provide a dynamic filename because execute_script() requires a &'static str
 		let global = self
 			.runtime
-			.execute_script(Self::DEFAULT_FILENAME, js_code.into())?;
+			.execute_script(Self::DEFAULT_FILENAME, js_code)?;
 
 		self.added_namespaces.insert(namespace.to_string(), global);
 
@@ -296,7 +297,7 @@ impl Script {
 		};
 
 		// 'undefined' will cause JSON serialization error, so it needs to be treated as null
-		let js_code = format!(
+		let js_code: String = format!(
 			"(async () => {{
 				let __rust_result = {fn_name}.constructor.name === 'AsyncFunction'
 					? await {fn_name}({json_args})
@@ -307,8 +308,7 @@ impl Script {
 
 				Deno.core.ops.op_return(__rust_result);
 			}})()"
-		)
-		.into();
+		);
 
 		if let Some(timeout) = self.timeout {
 			let handle = self.runtime.v8_isolate().thread_safe_handle();
