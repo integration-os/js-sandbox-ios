@@ -1,0 +1,19 @@
+# Copyright (c) 2020-2023 js-sandbox contributors. Zlib license.
+
+[package]
+name = "js-sandbox-macros-ios"
+version = "0.3.0"
+description = "Procedural macros for js-sandbox"
+repository = "https://github.com/integration-os/js-sandbox-ios"
+documentation = "https://docs.rs/js-sandbox-macros-ios/latest/js_sandbox_macros_ios"
+authors = ["Jan Haller <bromeon@gmail.com>"]
+license = "Zlib"
+edition = "2021"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = { version = "2.0.89", features = ["full"] }
+quote = "1.0.37"
+proc-macro2 = "1.0.92"
