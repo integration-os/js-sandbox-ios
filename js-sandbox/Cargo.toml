@@ -9,7 +9,7 @@ documentation = "https://docs.rs/js-sandbox/0.2.0-rc.1"
 authors = ["Jan Haller <bromeon@gmail.com>"]
 license = "Zlib"
 edition = "2021"
-readme = "../Readme.md"
+readme = "../README.md"
 
 [dependencies]
 js-sandbox-macros = { path = "../js-sandbox-macros", version = "=0.2.0" }
