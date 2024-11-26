@@ -63,18 +63,18 @@ jobs:
         with:
           crate: cargo-readme
 
-      - name: "Sync js-sandbox/lib.rs with ReadMe.md"
+      - name: "Sync js-sandbox/lib.rs with README.md"
         id: prepareCommit
         run: |
           cd js-sandbox
-          cargo readme --no-license --template ../cfg/ReadMe.in > ../ReadMe.md
-          sed -i $'s/\t/    /g' ../ReadMe.md
+          cargo readme --no-license --template ../cfg/README.in > ../README.md
+          sed -i $'s/\t/    /g' ../README.md
           git diff --exit-code || echo "docsChanged=true" >> $GITHUB_OUTPUT
 
       - name: "Commit changes if needed"
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           # If not specified, author is the one of prev commit (but with @users.noreply.github.com)
-          commit_message: "Auto-sync ReadMe.md"
+          commit_message: "Auto-sync README.md"
           #commit_author: "GitHub Actions <actions@github.com>"
         if: ${{ steps.prepareCommit.outputs.docsChanged == 'true' }}
