@@ -3,6 +3,6 @@
 [workspace]
 resolver = "2"
 members = [
-    "js-sandbox",
-    "js-sandbox-macros",
+    "js-sandbox-ios",
+    "js-sandbox-macros-ios",
 ]
